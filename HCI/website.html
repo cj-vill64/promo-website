@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Auspices</title>
+    <style>
+        ::-webkit-scrollbar {
+            background-color: black;
+            width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .home, .about, .features, .contacts {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+        }
+        .home {
+            background: url(pic/bg.png) no-repeat center center/cover;
+        }
+        .about {
+            background-color: #3AB2F9;
+        }
+        .features {
+            background-color: #008080;
+        }
+        .contacts {
+            background-color: #1F80A0;
+            color: rgb(0, 0, 0);
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background-color: navy;
+            height: 70px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .navbar h3 {
+            color: white;
+            font-size: 24px;
+        }
+        .navbar .logo {
+            width: 100px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 2em;
+        }
+        .navigation a {
+            color: aliceblue;
+            font-weight: bold;
+        }
+
+        ul li a:hover{
+            color: rgb(59,174,209);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .line {
+            height: 3px;
+            width: 25px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        .info {
+            text-align: center;
+            color: #076EB9;
+        }
+        .info h1 {
+            font-size: 6em;
+        }
+        .info h3 {
+            font-size: 1.5em;
+            font-family: cursive;
+            color: rgb(0, 0, 0);
+        }
+        
+        .info a{
+            color: #fff;
+            background: rgb(36,32,30);
+            margin: 26px 0;
+            padding: 10px 18px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .info a:hover{
+            background: rgb(59,174,209);
+        }
+
+        .about-header-text {
+            text-align: center;
+            padding-top: 4em;
+        }
+        .about-header-text h1 {
+            color: rgb(0, 0, 0);
+            font-size: 4em;
+        }
+        .about-des p {
+            font-size: 1.2em;
+            color: white;
+            border: 2px rgb(0, 34, 255) solid;
+            border-radius: 20px;
+            background-color: rgb(2, 1, 90);
+            padding: 2em;
+            text-align: justify;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .abpic .pic {
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+
+        .features {
+            padding: 2em;
+        }
+        .features h1 {
+            font-size: 4em;
+        }
+        .features-header-text {
+            text-align: center;
+        }
+        .main-features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .feat-one {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1em;
+            text-align: center;
+        }
+        .ftimg img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .contacts-header-text {
+            padding-top: 5em;
+            text-align: center;
+        }
+        .contacts-header-text h1 {
+            color: rgb(0, 0, 0);
+            font-size: 4em;
+        }
+        .contacts-header-text h6 {
+            color: black;
+            font-size: 2em;
+        }
+        .contacts-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 2em;
+        }
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 1em;
+        }
+        .contact-info h5 {
+            margin-top: 1em;
+            font-size: 2em;
+        }
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.5em;
+        }
+        .message {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 2em;
+        }
+        .message form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .icons a {
+            text-decoration: none;
+            color: #000;
+        }
+        .icons ion-icon {
+            color: #000;
+            font-size: 40px;
+            transition: .4s ease;
+        } 
+        .icons ion-icon:hover {
+            color: rgb(59,174,209);
+        }
+
+        @media (max-width: 768px) {
+            .info h1 {
+                font-size: 4em;
+            }
+            .info h3 {
+                font-size: 1.2em;
+            }
+            .about-des p {
+                font-size: 1em;
+                margin: 10px;
+            }
+            .main-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contacts-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-info {
+                padding-right: 0;
+                text-align: center;
+            }
+            .navigation {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: navy;
+                position: absolute;
+                top: 70px;
+                left: 0;
+            }
+            .navigation.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+    </head>
+    <body>
+
+    <div class="navbar">
+        <img src="pic/logo.png" class="logo" alt="Logo">
+        <h3>Cerulean Co.</h3>
+        <div class="hamburger" id="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="navigation" id="navigation">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#features">FEATURES</a></li>
+            <li><a href="#contacts">CONTACT US</a></li>
+        </ul>
+    </div>
+
+    <section class="home" id="home">
+        <div class="main-container">
+            <div class="main">
+            <div class="info">
+            <h1>Ocean Auspices</h1>
+            <h3>"A Wave of Opportunity"</h3>
+            <a href="#contacts">Get Started</a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-header-text">
+        <h1>ABOUT</h1>
+        </div>
+        <div class="abpic">
+        <img src="pic/abo.jpg" class="pic" alt="About">
+        </div>
+        <div class="about-des">
+            <p>Cerulean co. is dedicated to empowering businesses with tailored solutions for growth and innovation. Our team focuses on delivering practical, results-driven strategies that address your unique challenges and opportunities. Partner with Cerulean to achieve your business goals. Let's grow together!</p>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-header-text">
+        <h1>FEATURES</h1>
+        </div>
+        <div class="main-features">
+        <div class="feat-one">
+            <div class="ftimg">
+            <img src="/pic/ft1.png" alt="Feature 1">
+            </div>
+            <div class="ftimg-header">
+                <h1>Register Boat</h1>
+                <p>Newly and unfamiliarized boats need to be registered. This includes 
+the boat's serial number, boat's name, types of items (e.g. electronics, 
+food supplies) and list of items (e.g. rice, fish).</p>
+            </div>
+        </div>
+        <div class="feat-one">
+            <div class="ftimg">
+            <img src="/pic/ft2.png" alt="Feature 2">
+            </div>
+            <div class="ftimg-header1">
+                <h1>Monitor Boat</h1>
+                <p>This feature can monitor the boat present in the area with its ID number
+and serial number to avoid overcrowding on the port. It can also monitor
+the arrival and departure time of each boat.</p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+        <div class="contacts-header-text">
+            <h1>CONTACT US</h1>
+            <h6>Send us a message and we'll get back to you shortly</h6>
+        </div>
+        <div class="contacts-container">
+            <div class="contact-info">
+                <h5>Address</h5>
+                <p>New Visayas, Panabo City <br> Davao del Norte, 8105</p>
+                <p>(+63) 993 613 3244</p>
+                <h5>Follow Us</h5>
+
+                <div class="icons">
+                    <a href="https://www.facebook.com/profile.php?id=61569215696546&mibextid=JRoKGi" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+                    <a href="https://www.instagram.com/https_seiji" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+                    <a href="https://www.linkedin.com/in/cyril-john-villanueva-27aaa5311" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
+                </div>
+            </div>
+            
+            <div class="message">
+                <form action="#">
+                <div class="fname">
+                <h5>First Name</h5>
+                <input type="text" required id="info" placeholder="Enter your first name">
+                </div>
+
+                <div class="lname">
+                <h5>Last Name</h5>
+                <input type="text" required id="info" placeholder="Enter your last name">
+                </div>
+
+                <div class="cont">
+                <h5>Email</h5>
+                <input type="email" required id="email" placeholder="Enter your email">
+                </div>
+
+                <div class="subj">
+                <h5>Subject</h5>
+                <input type="text" required id="contact" placeholder="e.g. Support">
+                </div>
+
+                <div class="send">
+                <h5>Write a Message</h5>
+                <input type="text" required id="contact" placeholder="Enter Text Here">
+                </div>
+
+                <div class="submit">
+                <button id="butt">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navigation = document.getElementById('navigation');
+
+        hamburger.addEventListener('click', () => {
+        navigation.classList.toggle('active');});
+    </script>
+    </body>
+    </html>
